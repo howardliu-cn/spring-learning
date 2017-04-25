@@ -23,6 +23,14 @@ public class HelloWorld {
         return "Hello World!";
     }
 
+    @RequestMapping("/test")
+    public String test(String id) {
+        if("error".equals(id)) {
+            throw new RuntimeException("throw an Exception");
+        }
+        return "ID";
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(HelloWorld.class);
     }
