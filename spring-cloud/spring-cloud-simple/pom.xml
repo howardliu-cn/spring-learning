@@ -12,6 +12,7 @@
     <version>1.0.0</version>
     <modules>
         <module>simple-provider-user</module>
+        <module>simple-consumer-movie</module>
     </modules>
     <packaging>pom</packaging>
 </project>
