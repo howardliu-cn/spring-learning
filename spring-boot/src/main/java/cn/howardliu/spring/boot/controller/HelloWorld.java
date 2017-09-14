@@ -38,6 +38,14 @@ public class HelloWorld {
         return "ID";
     }
 
+    @RequestMapping("/test2")
+    public String test2(String id) throws Throwable {
+        if ("error".equals(id)) {
+            throw new MyExceptionHandler("001", "e", "001", "e", new RuntimeException("test e"));
+        }
+        return "ID";
+    }
+
     @RequestMapping("exception")
     public void exception() {
         PropertiesLoad.putProperties("exception.brokerList", "10.6.100.4:9092,10.6.100.5:9092,10.6.100.6:9092");
