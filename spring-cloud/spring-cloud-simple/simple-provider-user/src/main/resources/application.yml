@@ -16,3 +16,17 @@ logging:
     org.hiberate: INFO
     org.hiberate.type.descriptor.sql.BasicBinder: TRACE
     org.hiberate.type.descriptor.sql.BasicExtractor: TRACE
+
+management:
+  security.enabled: false
+
+## INFO
+info:
+  app:
+    name: ${project.artifactId}
+    encoding: ${project.build.sourceEncoding}
+    version: ${project.version}
+    java:
+      source: ${java.version}
+      target: ${java.version}
+      vendor: ${java.specification.vendor}
