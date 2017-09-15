@@ -1,10 +1,11 @@
 package cn.howardliu.springLearning.simple.client;
 
+import cn.howardliu.springLearning.config.FiegnConfiguration;
 import cn.howardliu.springLearning.simple.pojo.User;
+import feign.Param;
+import feign.RequestLine;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * <br>created at 17-9-15
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author liuxh
  * @since 1.0.0
  */
-@FeignClient("simple-provider-user")
+@FeignClient(name = "simple-provider-user", configuration = FiegnConfiguration.class)
 public interface UserFeignClient {
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    User findById(@PathVariable("id") Long id);
+    @RequestLine("GET /{id}")
+    User findById(@Param("id") Long id);
 }
