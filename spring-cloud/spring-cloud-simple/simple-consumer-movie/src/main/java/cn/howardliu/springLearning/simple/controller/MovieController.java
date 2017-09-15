@@ -1,5 +1,6 @@
 package cn.howardliu.springLearning.simple.controller;
 
+import cn.howardliu.springLearning.simple.client.UserFeignClient;
 import cn.howardliu.springLearning.simple.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -7,7 +8,6 @@ import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * <br>created at 17-9-14
@@ -17,18 +17,18 @@ import org.springframework.web.client.RestTemplate;
  */
 @RestController
 public class MovieController {
-    private final RestTemplate restTemplate;
     private final LoadBalancerClient loadBalancerClient;
+    private final UserFeignClient userFeignClient;
 
     @Autowired
-    public MovieController(RestTemplate restTemplate, LoadBalancerClient loadBalancerClient) {
-        this.restTemplate = restTemplate;
+    public MovieController(LoadBalancerClient loadBalancerClient, UserFeignClient userFeignClient) {
         this.loadBalancerClient = loadBalancerClient;
+        this.userFeignClient = userFeignClient;
     }
 
     @GetMapping("/user/{id}")
     public User findById(@PathVariable Long id) {
-        return restTemplate.getForObject("http://simple-provider-user/" + id, User.class);
+        return userFeignClient.findById(id);
     }
 
     @GetMapping("/log-instance")
