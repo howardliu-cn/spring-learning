@@ -17,6 +17,7 @@
         <module>provider-user-for-hystrix</module>
         <module>consumer-movie-feign-hystrix-fallback</module>
         <module>consumer-movie-feign-hystrix-fallback-factory</module>
+        <module>consumer-movie-feign-hystrix-fallback-stream</module>
         <module>provider-user-feign-hystrix-fallback</module>
         <module>discovery-eureka</module>
     </modules>
