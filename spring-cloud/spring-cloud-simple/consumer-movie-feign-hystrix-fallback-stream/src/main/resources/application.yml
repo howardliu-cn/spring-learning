@@ -1,9 +1,9 @@
 server:
-  port: 8010
+  port: 8020
 
 spring:
   application:
-    name: simple-consumer-movie
+    name: simple-consumer-movie-feign-hystrix-fallback-stream
 
 eureka:
   client:
@@ -15,3 +15,7 @@ eureka:
     prefer-ip-address: true
 
 feign.hystrix.enabled: true
+
+turbine:
+  appConfig: simple-consumer-movie-feign-hystrix-fallback-stream, simple-consumer-movie
+  clusterNameExpression: "'default'"
