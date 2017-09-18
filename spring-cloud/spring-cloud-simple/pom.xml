@@ -20,6 +20,7 @@
         <module>consumer-movie-feign-hystrix-fallback-stream</module>
         <module>provider-user-feign-hystrix-fallback</module>
         <module>discovery-eureka</module>
+        <module>gateway-zuul</module>
     </modules>
     <packaging>pom</packaging>
 </project>
