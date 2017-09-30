@@ -1,0 +1,9 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    ipAddress: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/,http://192.168.7.197:8762/eureka/

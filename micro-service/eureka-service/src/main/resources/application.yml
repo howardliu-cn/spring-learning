@@ -1,0 +1,34 @@
+server:
+  port: 8761
+
+management:
+  context-path: /admin
+  security.enabled: false
+
+spring:
+  application:
+    name: eureka-service
+
+eureka:
+  environment: develop
+  instance:
+    ipAddress: 192.168.7.197
+    preferIpAddress: true
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    instanceId: ${spring.application.name}:${server.port}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:${server.port}/eureka/
+
+info:
+  app:
+    name: ${project.artifactId}
+    encoding: ${project.build.sourceEncoding}
+    version: ${project.version}
+    java:
+      source: ${java.version}
+      target: ${java.version}
+      vendor: ${java.specification.vendor}
