@@ -11,6 +11,7 @@
     <modules>
         <module>spring-cloud</module>
         <module>spring-boot</module>
+        <module>micro-service</module>
     </modules>
 
     <properties>
