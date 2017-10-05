@@ -9,8 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
     <modules>
-        <module>spring-cloud</module>
-        <module>spring-boot</module>
+        <!--<module>spring-cloud</module>-->
+        <!--<module>spring-boot</module>-->
         <module>micro-service</module>
     </modules>
 
