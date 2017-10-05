@@ -1,0 +1,22 @@
+server:
+  port: 7001
+
+management:
+  context-path: /admin
+  security.enabled: false
+
+spring:
+  application:
+    name: config-service
+  cloud.config.server.git:
+    uri: https://gitee.com/sc_learning/spring_cloud_config_learning/
+
+info:
+  app:
+    name: ${project.artifactId}
+    encoding: ${project.build.sourceEncoding}
+    version: ${project.version}
+    java:
+      source: ${java.version}
+      target: ${java.version}
+      vendor: ${java.specification.vendor}

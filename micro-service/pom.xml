@@ -12,6 +12,7 @@
     <version>1.0.0</version>
     <modules>
         <module>eureka-service</module>
+        <module>config-service</module>
     </modules>
     <packaging>pom</packaging>
 
