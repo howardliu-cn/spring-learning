@@ -1,0 +1,15 @@
+server:
+  port: 8001
+
+management:
+  security.enabled: false
+
+info:
+  app:
+    name: ${project.artifactId}
+    encoding: ${project.build.sourceEncoding}
+    version: ${project.version}
+    java:
+      source: ${java.version}
+      target: ${java.version}
+      vendor: ${java.specification.vendor}

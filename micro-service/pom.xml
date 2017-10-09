@@ -13,6 +13,7 @@
     <modules>
         <module>eureka-service</module>
         <module>config-service</module>
+        <module>config-service-demo</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -41,6 +42,18 @@
     </dependencyManagement>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
