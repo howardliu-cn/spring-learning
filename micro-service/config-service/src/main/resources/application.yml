@@ -1,5 +1,5 @@
 server:
-  port: 7001
+  port: 8888
 
 management:
   context-path: /admin
@@ -9,7 +9,8 @@ spring:
   application:
     name: config-service
   cloud.config.server.git:
-    uri: https://gitee.com/sc_learning/spring_cloud_config_learning/
+    uri: https://gitee.com/sc_learning/spring_cloud_config_learning
+    searchPaths: '{application}'
 #    username: sc_learning
 #    password: 1qaz2wsx
 
