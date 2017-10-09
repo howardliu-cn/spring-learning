@@ -10,6 +10,8 @@ spring:
     name: config-service
   cloud.config.server.git:
     uri: https://gitee.com/sc_learning/spring_cloud_config_learning/
+#    username: sc_learning
+#    password: 1qaz2wsx
 
 info:
   app:
