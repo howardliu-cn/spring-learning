@@ -6,3 +6,5 @@ spring:
       uri: http://localhost:8888/
       profile: dev
       label: master
+      username: user
+      password: c22e61ed-a0a0-488f-83cb-ee943c4f7f7c
