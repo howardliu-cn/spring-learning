@@ -5,6 +5,11 @@ management:
   context-path: /admin
   security.enabled: false
 
+security:
+  user:
+    name: user
+    password: c22e61ed-a0a0-488f-83cb-ee943c4f7f7c
+
 spring:
   application:
     name: config-service

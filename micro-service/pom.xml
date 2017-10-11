@@ -19,7 +19,7 @@
 
     <properties>
         <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
-        <spring-cloud.version>Dalston.SR3</spring-cloud.version>
+        <spring-cloud.version>Dalston.SR4</spring-cloud.version>
     </properties>
 
     <dependencyManagement>
