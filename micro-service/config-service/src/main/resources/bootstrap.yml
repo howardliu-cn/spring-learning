@@ -1,2 +1,6 @@
 encrypt:
-  key: sc_learning
+  key-store:
+    location: file://${user.home}/work/projects/spring-learning/micro-service/config-service/src/main/resources/config-service.jks
+    alias: mytestkey
+    password: letmein
+    secret: changeme
