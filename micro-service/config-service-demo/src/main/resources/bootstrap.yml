@@ -3,8 +3,15 @@ spring:
     name: config-service-demo
   cloud:
     config:
-      uri: http://localhost:8888/
+      discovery:
+        enabled: true
+        service-id: config-service
       profile: dev
       label: master
       username: user
       password: c22e61ed-a0a0-488f-83cb-ee943c4f7f7c
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/,http://192.168.7.197:8762/eureka/
