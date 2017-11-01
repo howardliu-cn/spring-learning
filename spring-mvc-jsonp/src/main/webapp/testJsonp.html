@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>jsonp</title>
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<h1>jsonp</h1>
+<a href="javascript:testJsonp();">测试</a>
+</body>
+<script>
+function testJsonp() {
+    $.ajax({
+        type : "get",
+        async:false,
+        url : "http://localhost:8080/spring-mvc-jsonp/jsonp/echo",
+        data: {
+            param: 'test'
+        },
+        dataType : "jsonp",
+        jsonp: "callback",
+        //jsonpCallback:"success_jsonpCallback",
+        success : function(json){
+            alert("success");
+            console.log(json);
+        },
+        error:function(e){
+            alert('fail');
+            console.log(e);
+        }
+    });
+}
+function success_jsonpCallback(data) {
+    console.log("success_jsonpCallback");
+    console.log(data);
+}
+</script>
+</html>

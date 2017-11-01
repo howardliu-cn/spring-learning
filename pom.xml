@@ -12,6 +12,7 @@
         <!--<module>spring-cloud</module>-->
         <!--<module>spring-boot</module>-->
         <module>micro-service</module>
+        <module>spring-mvc-jsonp</module>
     </modules>
 
     <properties>
