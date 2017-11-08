@@ -13,6 +13,7 @@
         <!--<module>spring-boot</module>-->
         <module>micro-service</module>
         <module>spring-mvc-jsonp</module>
+        <module>spring-boot-proxy</module>
     </modules>
 
     <properties>

@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>首页</title>
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<h1>jsonp</h1>
+<a href="javascript:testJsonp('/proxy1/jsonp/echo.jsonp');">测试echo1</a>
+<br>
+<a href="javascript:testJsonp('/proxy1/jsonp/cookie/echo.jsonp');">测试cookie1</a>
+<br>
+<a href="javascript:testJsonp('/proxy2/jsonp/echo.jsonp');">测试echo2</a>
+<br>
+<a href="javascript:testJsonp('/proxy2/jsonp/cookie/echo.jsonp');">测试cookie2</a>
+<br>
+<a href="javascript:testJsonp('http://127.0.0.1:8080/studio/jsonp/echo.jsonp');">本地测试</a>
+<br>
+<a href="/member.html">会员页面</a>
+</body>
+<script>
+function testJsonp(url) {
+    $.ajax({
+        type : "get",
+        async:false,
+        url : url,
+        data: {
+            param: 'test'
+        },
+        dataType : "jsonp",
+        jsonp: "callback",
+        success : function(json){
+            alert("success");
+            console.log(json);
+        },
+        error:function(e){
+            alert('fail');
+            console.log(e);
+        }
+    });
+}
+</script>
+</html>
