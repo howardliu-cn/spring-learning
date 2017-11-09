@@ -2,10 +2,9 @@ package cn.howardliu.spring.learning.proxy.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -31,15 +30,24 @@ public class JsonpController {
 
     @RequestMapping("cookie/echo")
     @ResponseBody
-    public JSONObject cookieEcho(String param, HttpServletRequest request, HttpServletResponse response) {
+    public JSONObject cookieEcho(@CookieValue(value = "token", required = false) String token,
+            String param, HttpServletRequest request, HttpServletResponse response) {
         JSONObject json = new JSONObject();
         json.put("success", true);
         json.put("param", param);
+        json.put("token", token);
         String timestamp = System.currentTimeMillis() + "";
         json.put("timestamp", timestamp);
         json.put("cookies", request.getCookies());
-        Cookie cookie = new Cookie(timestamp, timestamp);
-        cookie.setDomain(System.getenv("THIS_DOMAIN"));
+        Cookie cookie = new Cookie("token", timestamp);
+        cookie.setHttpOnly(true);
+//        cookie.setSecure(true);
+        String domain = System.getenv("THIS_DOMAIN");
+        if (domain == null) {
+            cookie.setDomain(request.getHeader("host").split(":")[0]);
+        } else {
+            cookie.setDomain(domain);
+        }
         cookie.setMaxAge(60);
         cookie.setPath("/");
         response.addCookie(cookie);
