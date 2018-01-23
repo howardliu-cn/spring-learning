@@ -9,11 +9,12 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
     <modules>
-        <!--<module>spring-cloud</module>-->
+        <module>spring-cloud</module>
         <!--<module>spring-boot</module>-->
         <module>micro-service</module>
         <module>spring-mvc-jsonp</module>
         <module>spring-boot-proxy</module>
+        <module>spring-web-jsp-ftl-json-jsonp</module>
     </modules>
 
     <properties>
