@@ -23,7 +23,7 @@ public class User {
     private String mob;
     @Email(regexp = "^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}$", message = "邮箱地址不正确")
     private String email;
-    @CannotHaveBlank(message = "昵称不能包含空格")
+    @CannotHaveBlank(message = "昵称{demo.validator.constraints.CannotHaveBlank.message}")
     private String nickname;
 
     public String getUsername() {

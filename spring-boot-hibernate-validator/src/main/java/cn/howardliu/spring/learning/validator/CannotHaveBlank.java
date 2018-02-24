@@ -20,7 +20,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER})
 @Retention(RUNTIME)
 public @interface CannotHaveBlank {
-    String message() default "不能包含空格";
+    String message() default "{demo.validator.constraints.CannotHaveBlank.message}";
 
     Class<?>[] groups() default {};
 
