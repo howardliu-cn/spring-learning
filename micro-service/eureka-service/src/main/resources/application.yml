@@ -12,16 +12,16 @@ spring:
 eureka:
   environment: develop
   instance:
-    ipAddress: 192.168.7.197
+    ipAddress: ${spring.cloud.client.ipAddress}
     preferIpAddress: true
     statusPageUrlPath: ${management.context-path}/info
     healthCheckUrlPath: ${management.context-path}/health
-    instanceId: ${spring.application.name}:${server.port}
+    instanceId: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://localhost:${server.port}/eureka/
+      defaultZone: http://${spring.cloud.client.ipAddress}:${server.port}/eureka/
 
 info:
   app:
