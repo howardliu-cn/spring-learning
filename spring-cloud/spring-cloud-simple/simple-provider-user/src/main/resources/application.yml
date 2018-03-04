@@ -2,7 +2,7 @@ server:
   port: 8000
 spring:
   application:
-    name: simple-provider-user
+    name: simple-provider-user-v1
   jpa:
     generate-ddl: false
     show-sql: true
