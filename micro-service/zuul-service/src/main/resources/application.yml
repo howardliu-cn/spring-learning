@@ -7,12 +7,14 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://192.168.7.126:8761/eureka/,http://192.168.7.113:8761/eureka/,http://192.168.7.113:8762/eureka/
+      defaultZone: http://127.0.0.1:8761/eureka/
     instance:
       prefer-ip-address: true
 
 zuul:
     add-host-header: true
+    sensitive-headers:
+    prefix: /api
 
 management:
   context-path: /admin
