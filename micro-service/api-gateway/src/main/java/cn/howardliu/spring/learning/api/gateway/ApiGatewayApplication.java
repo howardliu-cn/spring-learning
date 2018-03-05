@@ -1,4 +1,4 @@
-package cn.howardliu.spring.learning.zuul;
+package cn.howardliu.spring.learning.api.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,9 +14,9 @@ import org.springframework.context.annotation.Bean;
  */
 @SpringBootApplication
 @EnableZuulProxy
-public class ZuulApplication {
+public class ApiGatewayApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ZuulApplication.class, args);
+        SpringApplication.run(ApiGatewayApplication.class, args);
     }
 
     @Bean
