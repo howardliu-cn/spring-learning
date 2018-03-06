@@ -26,4 +26,9 @@ public class ApiGatewayApplication {
                 "${version}/${name}"
         );
     }
+
+    @Bean
+    public ResponseWrapFilter errorFilter(){
+        return new ResponseWrapFilter();
+    }
 }
