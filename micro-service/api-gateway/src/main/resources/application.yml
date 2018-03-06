@@ -2,7 +2,7 @@ server:
   port: 8040
 spring:
   application:
-    name: gateway-zuul
+    name: api-gateway
 
 eureka:
   client:
@@ -16,10 +16,31 @@ eureka:
     healthCheckUrlPath: ${server.context-path}${management.context-path}/health
     instanceId: ${spring.application.name}#${spring.cloud.client.ipAddress}:${server.port}
 
+##timeout config
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  readTimeout: 60000
+  connectTimeout: 60000
+  maxAutoRetries: 0
+  maxAutoRetriesNextServer: 1
+  eureka:
+    enabled: true
+
 zuul:
-    add-host-header: true
-    sensitive-headers:
-    prefix: /api
+  add-host-header: true
+  sensitive-headers:
+  prefix: /api
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
 
 management:
   context-path: /admin
