@@ -1,10 +1,6 @@
 server:
   port: 8761
 
-management:
-  context-path: /admin
-  security.enabled: false
-
 spring:
   application:
     name: eureka-service
@@ -27,6 +23,31 @@ eureka:
   server:
     enable-self-preservation: false
     eviction-interval-timer-in-ms: 4000
+
+security:
+  basic:
+    enabled: true
+    path: /admin
+  user:
+    name: admin
+    password: admin
+
+management:
+  context-path: /admin
+  port: 24680
+  security:
+    roles: SUPERUSER
+    enabled: true
+
+endpoints:
+  actuator:
+    enabled: true
+  metrics:
+    sensitive: true
+    enabled: true
+  health:
+    sensitive: true
+    enabled: true
 
 info:
   app:
