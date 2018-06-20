@@ -45,20 +45,20 @@ zuul:
 #  ignored-services: member-base-v1,member-admin-v1
 #  ignored-patterns: /**/admin/**,/**/base/**,/**/swagger**
 
-security:
-  basic:
-    enabled: true
-    path: /admin,/**/swagger-ui.html
-  user:
-    name: admin
-    password: admin
+#security:
+#  basic:
+#    enabled: true
+#    path: /admin,/**/swagger-ui.html
+#  user:
+#    name: admin
+#    password: 8101f230-c4c5-4a3d-a5a9-1f639306d8c8
 
 management:
   context-path: /admin
   port: 13579
-  security:
-    roles: SUPERUSER
-    enabled: true
+#  security:
+#    roles: SUPERUSER
+#    enabled: true
 
 endpoints:
   actuator:
