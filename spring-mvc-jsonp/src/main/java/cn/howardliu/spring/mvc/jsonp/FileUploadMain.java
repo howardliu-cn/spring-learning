@@ -19,10 +19,10 @@ import java.io.IOException;
 public class FileUploadMain {
     public static void main(String[] args) throws IOException {
         HttpClient httpClient = new HttpClient();
-        PostMethod postMethod = new PostMethod("http://localhost:8080/spring-mvc-jsonp/file/upload");
+        PostMethod postMethod = new PostMethod("http://127.0.0.1:8000/file/upload");
         postMethod.addParameter("username", "abc");
         postMethod.addParameter("nickname", "def");
-        Part[] parts = {new FilePart("favicon.png", new File("/home/liuxh/Pictures/favicon.png"))};
+        Part[] parts = {new FilePart("favicon.png", new File("/home/liuxh/Pictures/default1.png"))};
         postMethod.setRequestEntity(new MultipartRequestEntity(parts, postMethod.getParams()));
         httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(5000);
         int status = httpClient.executeMethod(postMethod);
