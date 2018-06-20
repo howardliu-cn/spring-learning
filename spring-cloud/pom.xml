@@ -13,8 +13,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-cloud-zookeeper</module>
-        <module>spring-cloud-eureka</module>
+        <!--<module>spring-cloud-zookeeper</module>-->
         <module>spring-cloud-simple</module>
     </modules>
 
