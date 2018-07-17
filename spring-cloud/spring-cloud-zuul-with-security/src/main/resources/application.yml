@@ -1,0 +1,82 @@
+server:
+  port: 9761
+
+spring:
+  application:
+    name: spring-cloud-zuul-with-security
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+
+##timeout config
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  readTimeout: 60000
+  connectTimeout: 60000
+  maxAutoRetries: 0
+  maxAutoRetriesNextServer: 1
+  eureka:
+     enabled: false
+
+security:
+  ignored:
+    /static/**
+    /resource/**
+    /**/*.css
+    /**/*.js
+    /**/*.png
+    /**/*.ico
+
+zuul:
+  add-host-header: true
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+  routes:
+    api-cms:
+      path: /api/**
+      url: http://localhost:9761
+    page-html:
+      path: /**/*.html
+      url: forward:/
+    resources-static:
+      path: /static/**
+      url: forward:/static
+    resources-2:
+      path: /static/**
+      url: forward:/resource
+
+management:
+  context-path: /manage
+  port: 13579
+
+endpoints:
+  actuator:
+    enabled: true
+  metrics:
+    sensitive: true
+    enabled: true
+  health:
+    sensitive: true
+    enabled: true
+
+info:
+  app:
+    name: ${project.artifactId}
+    encoding: ${project.build.sourceEncoding}
+    version: ${project.version}
+    java:
+      source: ${java.version}
+      target: ${java.version}
+      vendor: ${java.specification.vendor}
+
