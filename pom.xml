@@ -17,6 +17,7 @@
         <module>spring-web-jsp-ftl-json-jsonp</module>
         <module>spring-boot-hibernate-validator</module>
         <module>spring-boot-2</module>
+        <module>spring-boot-fileupload</module>
     </modules>
 
     <properties>
