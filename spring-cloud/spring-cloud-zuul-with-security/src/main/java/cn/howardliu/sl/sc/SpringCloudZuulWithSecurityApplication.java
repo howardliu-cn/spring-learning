@@ -3,6 +3,7 @@ package cn.howardliu.sl.sc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 /**
  * <br>created at 18-7-17
@@ -11,8 +12,8 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  * @since 0.1.0
  */
 @SpringBootApplication
-//@EnableWebSecurity
-//@EnableZuulProxy
+@EnableWebSecurity
+@EnableZuulProxy
 public class SpringCloudZuulWithSecurityApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringCloudZuulWithSecurityApplication.class, args);
