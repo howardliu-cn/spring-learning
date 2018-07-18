@@ -62,35 +62,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login.html")
-                .loginProcessingUrl("/login")
+                .failureUrl("/login-error.html")
+                .loginProcessingUrl("/login.html")
+                .defaultSuccessUrl("/index.html")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .permitAll()
-                .failureHandler((httpServletRequest, httpServletResponse, e) -> {
-                    httpServletResponse.setContentType("application/json;charset=utf-8");
-                    PrintWriter out = httpServletResponse.getWriter();
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("{\"code\":\"403\",\"msg\":\"");
-                    if (e instanceof UsernameNotFoundException || e instanceof BadCredentialsException) {
-                        sb.append("用户名或密码输入错误，登录失败!");
-                    } else if (e instanceof DisabledException) {
-                        sb.append("账户被禁用，登录失败，请联系管理员!");
-                    } else {
-                        sb.append("登录失败!");
-                    }
-                    sb.append("\"}");
-                    out.write(sb.toString());
-                    out.flush();
-                    out.close();
-                })
-                .successHandler((httpServletRequest, httpServletResponse, authentication) -> {
-                    httpServletResponse.setContentType("application/json;charset=utf-8");
-                    PrintWriter out = httpServletResponse.getWriter();
-                    String s = "{\"code\":\"200\",\"msg\":\"success\"}";
-                    out.write(s);
-                    out.flush();
-                    out.close();
-                })
                 .and()
                 .logout()
                 .permitAll()

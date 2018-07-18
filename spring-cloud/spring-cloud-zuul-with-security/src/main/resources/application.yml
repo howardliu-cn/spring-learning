@@ -28,15 +28,6 @@ ribbon:
   eureka:
      enabled: false
 
-security:
-  ignored:
-    /static/**
-    /resource/**
-    /**/*.css
-    /**/*.js
-    /**/*.png
-    /**/*.ico
-
 zuul:
   add-host-header: true
   host:

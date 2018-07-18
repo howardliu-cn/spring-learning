@@ -1,9 +1,9 @@
 package cn.howardliu.sl.sc.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <br>created at 18-7-17
@@ -11,17 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @author liuxh
  * @since 0.1.0
  */
-@RestController
+@Controller
 public class IndexController {
-    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
-
-    @RequestMapping("index")
+    @RequestMapping({"/", "/index.html"})
     public String index() {
         return "index";
     }
 
-    @RequestMapping("api/test")
-    public String apiTest() {
-        return "api test";
+    @RequestMapping("simulateError.html")
+    public String simulateError() {
+        throw new RuntimeException("error page");
     }
 }

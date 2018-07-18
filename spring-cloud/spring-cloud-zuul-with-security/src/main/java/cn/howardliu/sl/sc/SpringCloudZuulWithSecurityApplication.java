@@ -12,7 +12,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  */
 @SpringBootApplication
 //@EnableWebSecurity
-@EnableZuulProxy
+//@EnableZuulProxy
 public class SpringCloudZuulWithSecurityApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringCloudZuulWithSecurityApplication.class, args);
