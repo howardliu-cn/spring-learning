@@ -17,6 +17,7 @@
         <module>api-gateway</module>
         <module>file-upload</module>
         <module>spring-cloud-zuul-with-security</module>
+        <module>spring-cloud-zuul-with-security-api-demo</module>
     </modules>
     <packaging>pom</packaging>
 

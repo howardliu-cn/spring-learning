@@ -4,15 +4,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <br>created at 18-7-18
+ * <br>created at 18-7-19
  *
  * @author liuxh
  * @since 0.1.0
  */
 @RestController
-public class ApiController {
-    @RequestMapping("api/test")
-    public String apiTest() {
-        return "api test";
+@RequestMapping("api")
+public class ApiDemoController {
+    @RequestMapping("demo")
+    public String demo() {
+        return "demo";
     }
 }

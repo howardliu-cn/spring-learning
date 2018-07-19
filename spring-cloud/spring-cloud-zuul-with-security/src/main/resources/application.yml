@@ -36,7 +36,7 @@ zuul:
   routes:
     api-cms:
       path: /api/**
-      url: http://localhost:9761
+      url: http://localhost:8080/api
     page-html:
       path: /**/*.html
       url: forward:/
