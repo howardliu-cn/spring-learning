@@ -1,7 +1,9 @@
 package cn.howardliu.sl.sc.boot;
 
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,6 +24,7 @@ import java.io.PrintWriter;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AccessDeniedHandler accessDeniedHandler() {
@@ -46,9 +49,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web
                 .ignoring()
-                .antMatchers("/static/**", "/resource/**")
+                .antMatchers("/static/**", "/resource/**", "/3rd/**")
                 .antMatchers("/**/*.css", "/**/*.js")
-                .antMatchers("/**/*.png", "/**/*.jpg");
+                .antMatchers("/**/*.png", "/**/*.jpg", "/**/*.ico");
     }
 
     @Override
@@ -61,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login.html")
                 .failureUrl("/login-error.html")
                 .loginProcessingUrl("/login.html")
-                .defaultSuccessUrl("/index.html")
+                .defaultSuccessUrl("/")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .permitAll()
