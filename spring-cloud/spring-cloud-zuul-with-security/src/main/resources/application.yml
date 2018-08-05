@@ -29,23 +29,35 @@ ribbon:
      enabled: false
 
 zuul:
-  add-host-header: true
+  add-host-header: false
   host:
     socket-timeout-millis: 60000
     connect-timeout-millis: 60000
   routes:
+    api-auth:
+      path: /api/auth/**
+      url: forward:/auth/
     api-cms:
-      path: /api/**
-      url: http://localhost:8080/api
-    page-html:
+      path: /api/cms/**
+      url: http://cmstest.ido-love.com/api/cms/
+    sources-route:
+      path: /assets/**
+      url: http://cmstest.ido-love.com/assets/
+    sources-bundle-css-route:
+      path: /*.bundle.css
+      url: http://cmstest.ido-love.com/
+    sources-bundle-js-route:
+      path: /*.bundle.js
+      url: http://cmstest.ido-love.com/
+    home-page:
+      path: /home/**
+      url: http://cmstest.ido-love.com/home/
+    login-html:
       path: /**/*.html
       url: forward:/
-    resources-static:
-      path: /static/**
-      url: forward:/static
-    resources-2:
-      path: /static/**
-      url: forward:/resource
+  debug:
+    request: true
+  include-debug-header: true
 
 management:
   context-path: /manage
