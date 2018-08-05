@@ -49,9 +49,12 @@ zuul:
     sources-bundle-js-route:
       path: /*.bundle.js
       url: http://cmstest.ido-love.com/
+    sources-chunk-js-route:
+      path: /*.chunk.js
+      url: http://cmstest.ido-love.com/
     home-page:
-      path: /home/**
-      url: http://cmstest.ido-love.com/home/
+      path: /cms/**
+      url: http://cmstest.ido-love.com/cms/
     login-html:
       path: /**/*.html
       url: forward:/
