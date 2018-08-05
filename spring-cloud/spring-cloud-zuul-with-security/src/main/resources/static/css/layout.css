@@ -1,0 +1,319 @@
+/*通用开始*/
+.break_word{word-wrap: break-word;  word-break: break-all;}
+/*通用开始*/
+
+/* 实例状态页面样式开始 */
+.a_name_font {
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.a_count_font {
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.item {
+    position: relative;
+    margin-left: 60px;
+    margin-bottom: 20px;
+}
+
+.matterInfo {
+    background: #44B6AE;
+    color: #fff;
+    height: 120px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.ml60 {
+    margin-left: 60px;
+    padding-top: 1px;
+    padding-right: 10px;
+}
+
+.matterInfo a.tit {
+    padding: 0;
+    margin: 15px 0 10px 0;
+    display: block;
+    font-size: 20px;
+    color: #fff;
+}
+
+.matterInfo .countbox a {
+    color: #fff;
+    font-size: 22px;
+    margin: 0 10px;
+}
+
+.matterInfo .countbox a.more {
+    font-size: 14px;
+    float: right;
+    margin-top: 5px;
+}
+
+.matterInfo .countbox a.more:hover {
+    text-decoration: underline;
+}
+
+.item_left {
+    width: 120px;
+    height: 120px;
+    border-radius: 50% !important;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    position: absolute;
+    top: 0;
+    left: -60px;
+    text-align: center;
+}
+
+.text {
+    width: 80px;
+    height: 80px;
+    border-radius: 50% !important;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    background: #fff;
+    margin: 20px auto;
+}
+
+.text strong {
+    font-size: 40px;
+    color: red;
+}
+
+.text p {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #464646;
+}
+
+.yellow {
+    background: #ffff00;
+}
+
+.green {
+    background: #21F500;
+}
+
+.red {
+    background: #FF3400;
+}
+
+.matterInfoRed {
+    background: #e35b5a;
+}
+
+.matterInfoYellow {
+    background: #f4d03f;
+}
+
+/* 实例状态页面样式结束 */
+
+/*实例概览页面异常列表样式开始*/
+.tab-pane ul {
+    list-style: none;
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.tab-pane .tit {
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    color: #999;
+}
+
+.tab-pane .list_line {
+    border-bottom: #d3d3d3 1px dashed;
+}
+
+.tab-pane li {
+    height: 24px;
+    line-height: 24px;
+    color: #666;
+    margin: 3px 0;
+    width: 100%;
+}
+
+.tab-pane li .tab_content_l {
+    width: 80%;
+}
+
+.tab-pane li .times {
+    margin: 0 15px;
+}
+
+.tab-pane li .tab_content_r {
+    color: #3598db;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.tab-pane li .tab_content_r:hover {
+    text-decoration: underline;
+}
+
+.tab-pane .fl {
+    float: left;
+}
+
+.tab-pane .fr {
+    float: right;
+}
+
+/*实例概览页面异常列表样式结束*/
+
+div.icon > .badge {
+    display: inline-block;
+    font-family: "Open Sans", sans-serif;
+    margin: -6px 0 0 0;
+    font-weight: 600;
+    padding: 6px 9px;
+    height: 24px;
+}
+
+div.noData {
+    text-align: center;
+}
+
+div.noData > .content {
+    position: relative;
+    top: 35px;
+    display: inline-block;
+    letter-spacing: -10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    line-height: 128px;
+    font-size: 100px;
+    font-weight: 300;
+    color: #7bbbd6;
+    text-align: right;
+}
+
+.form .form-bordered .form-group .control-label {
+    border-left: 1px solid #efefef;
+    padding-bottom: 22px;
+}
+
+.dataTables_processing {
+    z-index: 1000;
+}
+
+.dashboard-stat2 .display .biz-tag-icon {
+    padding-left: 1em !important;
+}
+
+/*实例概览页面开始*/
+.table-scrollable table th {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+.table-scrollable table td {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+/*实例概览页面结束*/
+
+/*实例节点页面开始*/
+.portlet div.tableContent {
+    max-height: 20em;
+    overflow-y: auto;
+}
+
+.box_data {
+    width: 140px;
+    height: 86px;
+    border: #d4d4d4 1px solid;
+    float: left;
+    margin-right: 4px;
+    margin-top: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.box_font_w1 {
+    float: left;
+    text-align: center;
+    margin-top: 20px;
+    width: 134px;
+    padding-left: 3px;
+    padding-right: 3px;
+    height: 20px;
+    line-height: 20px;
+}
+
+.box_font_w2 {
+    float: left;
+    text-align: center;
+    width: 134px;
+    padding-left: 3px;
+    padding-right: 3px;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 5px;
+}
+
+.box_font01 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #404040;
+    margin-right: 5px;
+}
+
+.box_font02 {
+    color: #808080;
+}
+
+.box_data_auto {
+    min-width: 140px;
+    height: 86px;
+    border: #d4d4d4 1px solid;
+    float: left;
+    margin-right: 4px;
+    margin-top: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.box_font_auto1 {
+    min-width: 134px;
+    text-align: center;
+    margin-top: 20px;
+    padding-left: 5px;
+    padding-right: 3px;
+    height: 20px;
+    line-height: 20px;
+}
+
+.box_font_auto2 {
+    min-width: 134px;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 3px;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 5px;
+}
+
+/*实例节点页面结束*/
+
+.blue-hoki_border {
+    border: 1px solid #869ab3;
+}
+
+/*mq消息监控数据显示*/
+table.facts { float: left; }
+table.facts th, table.legend th { color: black; text-align: right; border-right: 1px solid #ccc; }
+table.facts th, table.facts td { vertical-align: top; padding: 0 10px 10px 10px; }
+table.facts th.horizontal { border-right: none; padding: 0 10px 5px 10px; }
+
+table.facts-long th { text-align: right; font-weight: bold; }
+table.facts-long th, table.facts-long td { vertical-align: top; }
+
+table.facts-l { margin-right: 50px; }
+.r { text-align: right !important; }
+/*mq消息监控数据显示结束*/
