@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.howardliu.sl.sc.mapper.AuthGroupMapper">
+    <select id="loadUserGroups" parameterType="cn.howardliu.sl.sc.pojo.AuthUserPojo"
+            resultType="cn.howardliu.sl.sc.pojo.AuthGroupPojo">
+        SELECT
+            g.group_id groupId,
+            g.group_name groupName,
+            g.group_desc groupDesc,
+            g.enabled enabled
+          FROM auth_group g LEFT JOIN auth_user_group ug ON g.group_id = ug.group_id
+         WHERE ug.user_id = #{userId}
+    </select>
+    <resultMap id="group" type="cn.howardliu.sl.sc.pojo.AuthGroupPojo">
+        <id property="groupId" column="group_id"/>
+        <result property="groupName" column="group_name"/>
+        <result property="groupDesc" column="group_desc"/>
+        <result property="enabled" column="enabled"/>
+        <collection property="authorities" column="group_id"
+                    ofType="cn.howardliu.sl.sc.pojo.AuthAuthorityPojo"
+                    select="cn.howardliu.sl.sc.mapper.AuthAuthorityMapper.listAuthoritiesByGroupId"/>
+    </resultMap>
+    <select id="listGroupsByUserId" resultMap="group">
+        SELECT
+          g.group_id group_id,
+          group_name,
+          group_desc,
+          enabled
+        FROM auth_group g LEFT JOIN auth_user_group ug ON g.group_id = ug.group_id
+        WHERE ug.user_id = #{userId}
+    </select>
+</mapper>

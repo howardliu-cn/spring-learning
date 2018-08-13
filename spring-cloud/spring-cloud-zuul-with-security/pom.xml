@@ -14,6 +14,7 @@
     <properties>
         <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
         <spring-cloud.version>Dalston.SR4</spring-cloud.version>
+        <my-gear.version>1.0.1-RELEASE</my-gear.version>
     </properties>
 
     <dependencies>
@@ -24,6 +25,14 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.howardliu</groupId>
+            <artifactId>spring-boot-starter-mybatis-druid</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -39,11 +48,32 @@
         </dependency>
     </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cn.howardliu</groupId>
+                <artifactId>gear-spring-boot-dependencies</artifactId>
+                <version>${my-gear.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
+        <filters>
+            <filter>${basedir}/src/main/resources-${resources.active}/env-profile.properties</filter>
+        </filters>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources-${resources.active}</directory>
+                <excludes>
+                    <exclude>env-profile.properties</exclude>
+                </excludes>
             </resource>
         </resources>
         <plugins>
@@ -53,4 +83,29 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <resources.active>1-dev</resources.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <resources.active>2-test</resources.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <resources.active>3-prod</resources.active>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.howardliu.sl.sc.mapper.AuthResourceMapper">
+    <select id="loadResourcesByAuthority" resultType="java.lang.String">
+        SELECT resource
+        FROM auth_resource r, auth_authority_resource ar, auth_authority a
+        WHERE r.resource_id = ar.resource_id
+              AND a.authority_id = ar.authority_id
+              AND a.authority = #{authority}
+    </select>
+    <resultMap id="resource" type="cn.howardliu.sl.sc.pojo.AuthResourcePojo">
+        <id property="resourceId" column="resource_id"/>
+        <result property="resourceName" column="resource_name"/>
+        <result property="resourceDesc" column="resource_desc"/>
+        <result property="resourceType" column="resource_type"/>
+        <result property="resource" column="resource"/>
+        <result property="priority" column="priority"/>
+        <result property="enabled" column="enabled"/>
+    </resultMap>
+    <select id="listResourcesByAuthorityId" resultMap="resource">
+        SELECT
+          r.resource_id resource_id,
+          resource_name,
+          resource_desc,
+          resource_type,
+          resource,
+          priority,
+          enabled
+        FROM auth_resource r LEFT JOIN auth_authority_resource ar ON r.resource_id = ar.resource_id
+        WHERE ar.authority_id = #{authorityId}
+    </select>
+</mapper>

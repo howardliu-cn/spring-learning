@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.howardliu.sl.sc.mapper.AuthAuthorityMapper">
+    <resultMap id="authAuthorityPojo" type="cn.howardliu.sl.sc.pojo.AuthAuthorityPojo">
+        <id property="authorityId" column="authority_id"/>
+        <result property="authority" column="authority"/>
+        <result property="authorityDesc" column="authority_desc"/>
+        <result property="enabled" column="enabled"/>
+    </resultMap>
+    <select id="loadAuthorityOfGroups" parameterType="list" resultMap="authAuthorityPojo">
+        SELECT *
+          FROM auth_authority a LEFT JOIN auth_group_authority ga ON a.authority_id = ga.authority_id
+         WHERE ga.group_id IN
+        <foreach collection="list" open="(" close=")" item="group" separator=",">
+            #{group.groupId}
+        </foreach>
+    </select>
+    <select id="loadAllAuthorities" resultType="java.lang.String">
+        SELECT authority FROM auth_authority WHERE enabled = TRUE
+    </select>
+    <resultMap id="authority" type="cn.howardliu.sl.sc.pojo.AuthAuthorityPojo">
+        <id property="authorityId" column="authority_id"/>
+        <result property="authority" column="authority"/>
+        <result property="authorityDesc" column="authority_desc"/>
+        <result property="enabled" column="enabled"/>
+        <collection property="resources" column="authority_id"
+                    ofType="cn.howardliu.sl.sc.pojo.AuthResourcePojo"
+                    select="cn.howardliu.sl.sc.mapper.AuthResourceMapper.listResourcesByAuthorityId"/>
+    </resultMap>
+    <select id="listAuthoritiesByGroupId" resultMap="authority">
+        SELECT
+          a.authority_id authority_id,
+          authority,
+          authority_desc,
+          enabled
+        FROM auth_authority a LEFT JOIN auth_group_authority ga ON a.authority_id = ga.authority_id
+        WHERE ga.group_id = #{groupId}
+    </select>
+</mapper>
