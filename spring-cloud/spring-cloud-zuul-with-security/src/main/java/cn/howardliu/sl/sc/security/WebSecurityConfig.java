@@ -1,18 +1,19 @@
 package cn.howardliu.sl.sc.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
@@ -31,6 +32,8 @@ import java.io.PrintWriter;
  */
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
@@ -62,9 +65,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return userDetailsService;
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService())
+                .passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -73,9 +77,51 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .securityInterceptor(filterSecurityInterceptor)
                 .privilegeEvaluator(customWebInvocationPrivilegeEvaluator())
                 .ignoring()
-                .antMatchers("/static/**", "/resource/**", "/3rd/**")
-                .antMatchers("/**/*.css", "/**/*.js")
+                .antMatchers("/static/**", "/resource/**", "/3rd/**", "/assets/**")
+                .antMatchers("/**/*.css", "/**/*.js", "/**/*.map")
                 .antMatchers("/**/*.png", "/**/*.jpg", "/**/*.ico")
+        ;
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("favicon.ico").permitAll()
+                .anyRequest().authenticated()
+
+                .and()
+                .formLogin()
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .loginPage("/login.html")
+                .failureUrl("/login-error.html")
+                .loginProcessingUrl("/login.html")
+                .successHandler(loginSuccessHandler())
+                .defaultSuccessUrl("/")
+                .permitAll()
+
+                .and()
+                .logout()
+                .logoutUrl("/logout.html")
+                .logoutSuccessUrl("/login.html?logout")
+                .invalidateHttpSession(true)
+                .permitAll()
+
+                .and()
+                .rememberMe()
+                .tokenValiditySeconds(604800)
+                .key("spring-security-zuul")
+                .tokenRepository(jdbcTokenRepository())
+                .userDetailsService(userDetailsService)
+
+                .and()
+                .csrf().disable()
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler())
+
+                .and()
+                .addFilterBefore(filterSecurityInterceptor, FilterSecurityInterceptor.class)
         ;
     }
 
@@ -84,42 +130,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
         jdbcTokenRepository.setDataSource(dataSource);
         return jdbcTokenRepository;
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .httpBasic().disable()
-                .authorizeRequests().anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login.html")
-                .failureUrl("/login-error.html")
-                .loginProcessingUrl("/login.html")
-                .defaultSuccessUrl("/")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .successHandler(loginSuccessHandler())
-                .permitAll()
-                .and()
-                .logout()
-                .logoutUrl("/logout.html")
-                .logoutSuccessUrl("/login.html?logout")
-                .invalidateHttpSession(true)
-                .permitAll()
-                .and()
-                .rememberMe()
-                .tokenValiditySeconds(604800)
-                .tokenRepository(jdbcTokenRepository())
-                .userDetailsService(userDetailsService)
-                .and()
-                .csrf()
-                .disable()
-                .exceptionHandling()
-                .accessDeniedHandler(accessDeniedHandler())
-                .and()
-                .addFilterBefore(filterSecurityInterceptor, FilterSecurityInterceptor.class)
-        ;
     }
 
     @Bean

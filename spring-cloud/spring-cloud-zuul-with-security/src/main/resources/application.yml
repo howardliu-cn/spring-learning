@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: spring-cloud-zuul-with-security
+  mvc:
+    favicon:
+      enabled: false
 
 eureka:
   client:
@@ -43,6 +46,9 @@ zuul:
     sources-route:
       path: /assets/**
       url: http://cmstest.ido-love.com/assets/
+    js-route:
+      path: /**/*.js
+      url: http://cmstest.ido-love.com/
     sources-bundle-css-route:
       path: /*.bundle.css
       url: http://cmstest.ido-love.com/
@@ -52,37 +58,40 @@ zuul:
     sources-chunk-js-route:
       path: /*.chunk.js
       url: http://cmstest.ido-love.com/
-    home-page:
+    cms-page:
       path: /cms/**
       url: http://cmstest.ido-love.com/cms/
     login-html:
       path: /**/*.html
       url: forward:/
+    ico-route:
+      path: /favicon.ico
+      url: http://cmstest.ido-love.com/
   debug:
     request: true
   include-debug-header: true
 
-management:
-  context-path: /manage
-  port: 13579
+#management:
+#  context-path: /manage
+#  port: 13579
 
-endpoints:
-  actuator:
-    enabled: true
-  metrics:
-    sensitive: true
-    enabled: true
-  health:
-    sensitive: true
-    enabled: true
+#endpoints:
+#  actuator:
+#    enabled: true
+#  metrics:
+#    sensitive: true
+#    enabled: true
+#  health:
+#    sensitive: true
+#    enabled: true
 
-info:
-  app:
-    name: ${project.artifactId}
-    encoding: ${project.build.sourceEncoding}
-    version: ${project.version}
-    java:
-      source: ${java.version}
-      target: ${java.version}
-      vendor: ${java.specification.vendor}
+#info:
+#  app:
+#    name: ${project.artifactId}
+#    encoding: ${project.build.sourceEncoding}
+#    version: ${project.version}
+#    java:
+#      source: ${java.version}
+#      target: ${java.version}
+#      vendor: ${java.specification.vendor}
 
