@@ -26,7 +26,7 @@ var Login = function () {
             },
 
             invalidHandler: function (event, validator) { //display error alert on form submit
-                $('.alert-danger', $('.login-form')).show();
+                $('.form_value', $('.login-form')).show();
             },
 
             highlight: function (element) { // hightlight error inputs
@@ -35,6 +35,7 @@ var Login = function () {
             },
 
             success: function (label) {
+                $(".form_value").hide();
                 label.closest('.form-group').removeClass('has-error');
                 label.remove();
             },
@@ -64,3 +65,54 @@ var Login = function () {
         }
     };
 }();
+
+$.ajax({
+    url: "/login/start/captcha?t=" + (new Date()).getTime(), // 加随机数防止缓存
+    type: "get",
+    dataType: "json",
+    success: function (data) {
+        initGeetest({
+            gt: data.gt,
+            challenge: data.challenge,
+            new_captcha: data.new_captcha,
+            offline: !data.success,
+            product: "popup",
+            width: "100%"
+        }, handler2);
+    }
+});
+
+var handler2 = function (captchaObj) {
+    $("#login").click(function (e) {
+        if ($('.login-form').validate().form()) {
+            var result = captchaObj.getValidate();
+            if (!result) {
+                $(".captcha").show();
+            } else {
+                $.ajax({
+                    url: '/login/verify/login',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        geetest_challenge: result.geetest_challenge,
+                        geetest_validate: result.geetest_validate,
+                        geetest_seccode: result.geetest_seccode
+                    },
+                    success: function (data) {
+                        if (data.status === 'success') {
+                            $('.login-form').submit();
+                        } else if (data.status === 'fail') {
+                            captchaObj.reset();
+                            console.log(data);
+                        }
+                    }
+                })
+            }
+            e.preventDefault();
+        }
+    });
+    captchaObj.appendTo("#captcha");
+    captchaObj.onReady(function () {
+        $("#wait1").hide();
+    });
+};

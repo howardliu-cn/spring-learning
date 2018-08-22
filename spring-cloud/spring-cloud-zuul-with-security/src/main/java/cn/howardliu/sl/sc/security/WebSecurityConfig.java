@@ -80,6 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/**", "/resource/**", "/3rd/**", "/assets/**")
                 .antMatchers("/**/*.css", "/**/*.js", "/**/*.map")
                 .antMatchers("/**/*.png", "/**/*.jpg", "/**/*.ico")
+                .antMatchers("/login/**")
         ;
     }
 

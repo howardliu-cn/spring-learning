@@ -1,0 +1,24 @@
+zuul:
+  add-host-header: false
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+  routes:
+    api-auth:
+      path: /api/auth/**
+      url: forward:/auth/
+    api-cms:
+      path: /api/cms/**
+      url: http://192.168.4.224/api/cms/
+    cms-page:
+      path: /cms/**
+      url: http://192.168.4.224/cms/
+    3rd-route:
+      path: /3rd/**
+      url: forward:/3rd
+    login-js-route:
+      path: /js/login.js
+      url: forward:/
+    login-html:
+      path: /**/*.html
+      url: forward:/
