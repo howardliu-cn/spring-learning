@@ -8,7 +8,7 @@ spring:
     favicon:
       enabled: false
   profiles:
-    active: prod
+    active: ${profile.active}
 
 eureka:
   client:

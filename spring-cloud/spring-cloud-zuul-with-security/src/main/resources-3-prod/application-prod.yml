@@ -19,6 +19,12 @@ zuul:
     login-js-route:
       path: /js/login.js
       url: forward:/
+    gt-js-route:
+      path: /js/gt.js
+      url: forward:/
     login-html:
       path: /**/*.html
       url: forward:/
+    login-request:
+      path: /login/**
+      url: forward:/login

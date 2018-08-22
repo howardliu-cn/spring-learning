@@ -96,18 +96,14 @@
             </activation>
             <properties>
                 <resources.active>1-dev</resources.active>
-            </properties>
-        </profile>
-        <profile>
-            <id>test</id>
-            <properties>
-                <resources.active>2-test</resources.active>
+                <profile.active>dev</profile.active>
             </properties>
         </profile>
         <profile>
             <id>prod</id>
             <properties>
                 <resources.active>3-prod</resources.active>
+                <profile.active>prod</profile.active>
             </properties>
         </profile>
     </profiles>
