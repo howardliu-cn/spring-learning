@@ -1,0 +1,9 @@
+spring:
+  session:
+    store-type: redis
+    redis:
+      namespace: zuul-kanmengou
+  redis:
+    cluster:
+      max-redirects: 3
+      nodes: 192.168.7.111:6379,192.168.7.111:6879,192.168.7.111:6979,192.168.7.120:6379,192.168.7.120:6779,192.168.7.120:6879

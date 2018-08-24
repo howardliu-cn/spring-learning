@@ -28,3 +28,13 @@ zuul:
     login-request:
       path: /login/**
       url: forward:/login
+
+spring:
+  session:
+    store-type: redis
+    redis:
+      namespace: zuul-kanmengou
+  redis:
+    cluster:
+      max-redirects: 3
+      nodes: 192.168.4.209:6579,192.168.4.236:6479,192.168.4.209:6479,192.168.4.222:6479,192.168.4.236:6579,192.168.4.222:6579
