@@ -23,14 +23,19 @@ public class ThirdMemberRepository {
 
     public List<ThirdMember> findAll() {
         return jdbcTemplate.query(
-                "select a.openid openid, b.uid uid from third_member a left join member b on a.uid = b.uid where b.source = 2 and a.unionid = ''",
+                "select a.openid openid, b.uid uid from third_member a left join member b on a.uid = b.uid where b.source = 1 and b.sub_source=21 and b.state=-1 and a.unionid = ''",
                 (rs, rowNum) -> new ThirdMember(rs.getString("uid"), rs.getString("openid"))
         );
     }
 
     public int update(ThirdMember thirdMember) {
-        return jdbcTemplate.update("update third_member set unionid=?, nickname=?, avatar=? where uid=?",
-                thirdMember.getUnionid(), thirdMember.getNickname(), thirdMember.getAvatar(), thirdMember.getUid());
+        try {
+            return jdbcTemplate.update("update third_member set unionid=?, nickname=?, avatar=? where uid=?",
+                    thirdMember.getUnionid(), thirdMember.getNickname(), thirdMember.getAvatar(), thirdMember.getUid());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public List<ThirdMember> findAllForUnionid() {
