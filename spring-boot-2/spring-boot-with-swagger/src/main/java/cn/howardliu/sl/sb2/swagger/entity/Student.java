@@ -15,13 +15,14 @@ import javax.validation.constraints.Size;
  * @since 0.1.0
  */
 @Entity
-@ApiModel("Student entity")
+@ApiModel("学生实体类")
 public class Student {
+    @ApiModelProperty(notes = "学生编号，不可重复")
     @Id
     @GeneratedValue
     private Integer id;
 
-    @ApiModelProperty(notes = "Name should have at least 2 characters")
+    @ApiModelProperty(notes = "学生姓名，至少两个字符")
     @Size(min = 2, message = "Name should have at least 2 characters")
     private String name;
 
